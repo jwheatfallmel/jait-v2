@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   useReactTable,
   getCoreRowModel,
@@ -10,6 +11,7 @@ import {
 import './DataTable.css';
 
 function DataTable({ data, columns, filters, onDownload }) {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const filteredData = useMemo(() => {
     return data.filter(item => {
@@ -117,7 +119,12 @@ function DataTable({ data, columns, filters, onDownload }) {
               </tr>
             ) : (
               table.getRowModel().rows.map(row => (
-                <tr key={row.id}>
+                <tr 
+                  key={row.id}
+                  onClick={() => navigate(`/jai-t/${row.original.id}`)}
+                  className="cursor-pointer hover:bg-blue-50 transition-colors"
+                  style={{ cursor: 'pointer' }}
+                >
                   {row.getVisibleCells().map(cell => (
                     <td key={cell.id}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}

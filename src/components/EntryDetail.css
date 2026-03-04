@@ -1,0 +1,343 @@
+/* EntryDetail.css — matches Canva mockup exactly */
+
+/* ── Wrapper ─────────────────────────────────────────────────────────────── */
+.ed-wrapper {
+  flex: 1;
+  font-family: 'Source Sans 3', sans-serif;
+  color: #011e41;
+  background: #f5f5f0;
+  padding: 24px 40px 48px;
+  min-height: calc(100vh - 200px);
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Loading / Error ─────────────────────────────────────────────────────── */
+.ed-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 16px;
+  font-family: 'Source Sans 3', sans-serif;
+  color: #011e41;
+}
+
+.ed-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #0097b2;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ed-spin 0.8s linear infinite;
+}
+
+@keyframes ed-spin { to { transform: rotate(360deg); } }
+
+.ed-error { color: #c0392b; font-weight: 600; }
+
+/* ── Back link ───────────────────────────────────────────────────────────── */
+.ed-back-row { margin-bottom: 12px; }
+
+.ed-back-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #0097b2;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.ed-back-link:hover { color: #011e41; }
+
+/* ── Card shell ──────────────────────────────────────────────────────────── */
+.ed-card {
+  border-radius: 6px;
+  overflow: hidden;
+  /* subtle shadow to lift card off background */
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+/* ── Header bar ──────────────────────────────────────────────────────────── */
+/* Teal background, DARK NAVY text both sides — exactly as in mockup */
+.ed-header {
+  background-color: #4ec7d4;
+  padding: 14px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.ed-header-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #011e41;
+  line-height: 1.2;
+}
+
+.ed-header-location {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #011e41;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Body: CSS grid, two columns ─────────────────────────────────────────── */
+/* LEFT fixed width, RIGHT fills remaining space */
+.ed-body {
+  background: #f0ede4;
+  padding: 32px 28px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: start;    /* both columns start at the top */
+}
+
+/* ── LEFT column ─────────────────────────────────────────────────────────── */
+/* Flex column, everything centered horizontally */
+.ed-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Square teal image box — thin dark border, minimal radius, matches mockup */
+.ed-image-box {
+  width: 240px;
+  height: 240px;
+  background-color: #3dbdd4;
+  border: 3px solid #1a1a1a;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Category PNG fills the box */
+.ed-category-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Fallback SVG placeholder */
+.ed-placeholder-svg {
+  width: 72%;
+  height: 72%;
+}
+
+.ed-tool-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #011e41;
+  margin: 4px 0 0;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.ed-by {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Blue pill vendor button — matches mockup */
+.ed-vendor-pill {
+  display: inline-block;
+  background: #5d9cc4;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 6px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s;
+  cursor: default;
+  max-width: 220px;
+  word-break: break-word;
+}
+
+a.ed-vendor-pill { cursor: pointer; }
+a.ed-vendor-pill:hover { background: #4a7ca8; }
+.ed-vendor-unknown { background: #aaa; }
+
+/* ── RIGHT column ────────────────────────────────────────────────────────── */
+/* Flex column — badges at top, description middle, footer pinned to bottom */
+.ed-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 4px;
+  min-height: 280px;    /* ensures footer has room */
+}
+
+/* Domain circles + status badge on one row */
+.ed-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Circular domain icon base */
+.ed-domain-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Gold filled — Law Enforcement */
+.ed-domain-gold {
+  background: #f0b429;
+  color: #fff;
+}
+
+/* Blue outlined — Courts */
+.ed-domain-blue {
+  background: transparent;
+  border: 3px solid #2b6cb0;
+  color: #2b6cb0;
+}
+
+/* Tan — Corrections */
+.ed-domain-corrections {
+  background: #d6c07e;
+  color: #011e41;
+}
+
+/* Status pill */
+.ed-status-badge {
+  padding: 8px 22px;
+  border-radius: 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.ed-status-active   { background: #27ae60; color: white; }
+.ed-status-inactive { background: #95a5a6; color: white; }
+
+/* Description — Georgia serif matching mockup editorial feel */
+.ed-description {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: #011e41;
+  margin: 0;
+  flex: 1;              /* pushes footer to the bottom */
+}
+
+/* ── Footer row ──────────────────────────────────────────────────────────── */
+.ed-footer-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+  border-top: 1px solid #c9bc9a;
+  margin-top: auto;     /* sticks to bottom of right column */
+}
+
+/* "Last Updated 04/25/25" — italic bold, matches mockup */
+.ed-last-updated {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.ed-sources {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* "Additional sources" — large bold dark navy label */
+.ed-sources-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #011e41;
+  white-space: nowrap;
+}
+
+.ed-source-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Blue pill source links */
+.ed-source-pill {
+  display: inline-block;
+  background: #5d9cc4;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 7px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.ed-source-pill:hover {
+  background: #4a7ca8;
+  transform: translateY(-1px);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ed-wrapper { padding: 16px 16px 40px; }
+
+  .ed-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 14px 20px;
+  }
+
+  /* Stack to single column on mobile */
+  .ed-body {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 28px;
+  }
+
+  .ed-image-box {
+    width: 180px;
+    height: 180px;
+  }
+
+  .ed-right { min-height: unset; }
+
+  .ed-footer-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .ed-sources {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

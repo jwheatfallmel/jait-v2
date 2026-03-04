@@ -11,6 +11,8 @@ import Disclaimers from './pages/Disclaimers';
 import Contact from './pages/Contact';
 import './App.css';
 import Taxonomy from './pages/Taxonomy';
+import EntryDetail from './components/EntryDetail';
+
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <Route path="/insights" element={<Insights />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/contact/about" element={<Contact />} />
+        <Route path="/jai-t/:id" element={<EntryDetail />} />
         <Route path="/contact/faq" element={<Contact />} />
       </Routes>
       <Footer />

@@ -61,7 +61,7 @@ export const parseCSVData = (csvText) => {
     }
 
     return {
-      id: index + 1,
+      id: String(index),
       name: technologyName,
       state: row['State'] || '',
       city: row['City'] || '',
@@ -70,6 +70,9 @@ export const parseCSVData = (csvText) => {
       description: description,
       lastUpdated: lastUpdated,
       link: row['Link'] || '',
+      otherLinks: row['Other Links'] || '',
+      vendor: vendor,
+      typeOfAI: technologyName,
     };
   }).filter(row => {
     // Only filter out rows that are completely empty or have no technology name
