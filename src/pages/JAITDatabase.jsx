@@ -426,7 +426,7 @@ function JAITDatabase() {
 
   const columns = useMemo(() => [
     {
-      accessorKey: 'name',
+      accessorKey: 'typeOfAI',
       header: "Name",
       cell: info => (
         <Link

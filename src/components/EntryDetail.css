@@ -139,7 +139,7 @@
 }
 
 .ed-tool-name {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #011e41;
   margin: 4px 0 0;
@@ -193,34 +193,24 @@ a.ed-vendor-pill:hover { background: #4a7ca8; }
   flex-wrap: wrap;
 }
 
-/* Circular domain icon base */
-.ed-domain-circle {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Domain emblem images */
+.ed-domain-icon {
+  width: 68px;
+  height: 68px;
   flex-shrink: 0;
 }
 
-/* Gold filled — Law Enforcement */
-.ed-domain-gold {
-  background: #f0b429;
-  color: #fff;
+/* Use icon + label row */
+.ed-meta-use-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Blue outlined — Courts */
-.ed-domain-blue {
-  background: transparent;
-  border: 3px solid #2b6cb0;
-  color: #2b6cb0;
-}
-
-/* Tan — Corrections */
-.ed-domain-corrections {
-  background: #d6c07e;
-  color: #011e41;
+.ed-use-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
 }
 
 /* Status pill */
@@ -233,7 +223,8 @@ a.ed-vendor-pill:hover { background: #4a7ca8; }
 }
 
 .ed-status-active   { background: #27ae60; color: white; }
-.ed-status-inactive { background: #95a5a6; color: white; }
+.ed-status-inactive { background: #e74c3c; color: white; }
+.ed-status-unsure   { background: #95a5a6; color: white; }
 
 /* Description — Georgia serif matching mockup editorial feel */
 .ed-description {
@@ -248,9 +239,9 @@ a.ed-vendor-pill:hover { background: #4a7ca8; }
 /* ── Footer row ──────────────────────────────────────────────────────────── */
 .ed-footer-row {
   display: flex;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
   padding-top: 16px;
   border-top: 1px solid #c9bc9a;
   margin-top: auto;     /* sticks to bottom of right column */
@@ -303,6 +294,77 @@ a.ed-vendor-pill:hover { background: #4a7ca8; }
 .ed-source-pill:hover {
   background: #4a7ca8;
   transform: translateY(-1px);
+}
+
+/* ── Category tags ───────────────────────────────────────────────────────── */
+.ed-category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.ed-category-tag {
+  background: #e8f4f8;
+  color: #0097b2;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ── Meta blocks (Domain, Stage of Deployment, Use) ─────────────────────── */
+.ed-meta-block {
+  display: flex;
+  flex-direction: column;
+  width: 220px;        /* fixed width matches image box — all blocks align */
+  margin-top: 12px;
+  gap: 2px;
+}
+
+.ed-meta-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+}
+
+.ed-meta-value {
+  font-size: 0.88rem;
+  color: #011e41;
+}
+
+/* ── Citations ───────────────────────────────────────────────────────────── */
+.ed-citations {
+  margin-top: 20px;
+  border-top: 1px solid #e5e5e0;
+  padding-top: 16px;
+}
+
+.ed-citations-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin: 0 0 10px;
+}
+
+.ed-citations-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ed-citation-item {
+  font-size: 0.82rem;
+  color: #444;
+  line-height: 1.5;
 }
 
 /* ── Responsive ──────────────────────────────────────────────────────────── */
