@@ -102,7 +102,7 @@ function Taxonomy() {
             </div>
           </div>
           <div className="font-['Source_Sans_3',sans-serif] text-base md:text-lg text-[#333] leading-relaxed">
-            Conducting administrative responsibilities and tasks with artificial intelligence that may aid in enhancing internal functions or management operations in streamlining processes, reducing time or labor, and gaining efficiencies.
+            Conducting administrative responsibilities and tasks with artificial intelligence that may impact internal functions or management operations regarding processes, time, labor, or other resources.
             <div className="mt-3 text-base md:text-lg text-[#555] italic">
               Examples: AI tools for drafting crime reports, organizing documentation, or virtual reality training
             </div>
