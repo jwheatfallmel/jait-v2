@@ -303,16 +303,25 @@ function EntryDetail() {
             <div className="ed-badges-row">
               {['Law Enforcement', 'Courts', 'Corrections'].map(d =>
                 domain.includes(d) && DOMAIN_IMAGES[d] ? (
-                  <img key={d} src={DOMAIN_IMAGES[d]} alt={d} title={d} className="ed-domain-icon" />
+                  <div key={d} className="ed-domain-icon-wrap">
+                    <img src={DOMAIN_IMAGES[d]} alt={d} className="ed-domain-icon" />
+                    <span className="ed-domain-tooltip">Domain</span>
+                  </div>
                 ) : null
               )}
               {entry.orgUse && entry.orgUse.trim() !== '' && (
-                <img src={getUseIcon(entry.orgUse)} alt={entry.orgUse} title={entry.orgUse} className="ed-domain-icon" />
+                <div className="ed-domain-icon-wrap">
+                  <img src={getUseIcon(entry.orgUse)} alt={entry.orgUse} className="ed-domain-icon" />
+                  <span className="ed-domain-tooltip">Use</span>
+                </div>
               )}
               {entry.status && entry.status.trim() !== '' && (
-                <span className={`ed-status-badge ${statusClass}`}>
-                  {entry.status}
-                </span>
+                <div className="ed-domain-icon-wrap">
+                  <span className={`ed-status-badge ${statusClass}`}>
+                    {entry.status}
+                  </span>
+                  <span className="ed-domain-tooltip">Stage of Deployment</span>
+                </div>
               )}
             </div>
 

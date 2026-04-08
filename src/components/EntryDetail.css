@@ -194,10 +194,39 @@ a.ed-vendor-pill:hover { background: #4a7ca8; }
 }
 
 /* Domain emblem images */
+.ed-domain-icon-wrap {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.ed-domain-icon-wrap .ed-domain-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.ed-domain-icon-wrap:hover .ed-domain-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 .ed-domain-icon {
   width: 68px;
   height: 68px;
-  flex-shrink: 0;
 }
 
 /* Use icon + label row */
