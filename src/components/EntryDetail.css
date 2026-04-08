@@ -251,7 +251,7 @@ a.ed-vendor-pill:hover { background: #4a7ca8; }
 .ed-last-updated {
   font-size: 1rem;
   font-style: italic;
-  font-weight: 700;
+  font-weight: 400;
   color: #333;
   margin: 0;
   white-space: nowrap;

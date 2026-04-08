@@ -25,9 +25,14 @@ export const parseCSVData = (csvText) => {
     const name       = nameOfTool || typeOfAI;
 
     const vendor = (row['Vendor or Name of Tech (if applicable)'] || '').trim();
+    const vendorLink = (row['Vendor Link'] || '').trim();
 
-    // Actual description column from new CSV
-    const description = (row['Description'] || '').trim();
+    // Actual description column from new CSV (header contains a newline)
+    const description = (
+      row['Description of Tool in your own words\n(1-2 sentences)'] ||
+      row['Description'] ||
+      ''
+    ).trim();
 
     // Stage of Deployment → status
     const status = (row['Stage of Deployment'] || '').trim();
@@ -57,7 +62,7 @@ export const parseCSVData = (csvText) => {
 
     // Dates
     const lastSearched = (row['Last Searched Date'] || '').trim();
-    const lastUpdated  = (row['Last Updated Per City'] || '').trim();
+    const lastUpdated  = (row['Found Details OR Last Searched Date'] || row['Last Updated Per City'] || '').trim();
 
     const criminalJustice = (row['Criminal Justice or Safety-related?'] || '').trim();
     const uniqueCases     = (row['Unique Cases'] || '').trim();
@@ -69,6 +74,7 @@ export const parseCSVData = (csvText) => {
       nameOfTool,
       typeOfAI,
       vendor,
+      vendorLink,
       description,
       status,
       orgUse,

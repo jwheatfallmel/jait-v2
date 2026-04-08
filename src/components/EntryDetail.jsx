@@ -13,6 +13,139 @@ const CATEGORY_IMAGES = {
   'Back End Administration': '/category-icons/backend.png',
 };
 
+const SITE_NAMES = {
+  'cnn.com': 'CNN',
+  'foxnews.com': 'Fox News',
+  'fox5ny.com': 'FOX 5 NY',
+  'fox5atlanta.com': 'FOX 5 Atlanta',
+  'msnbc.com': 'MSNBC',
+  'nbcnews.com': 'NBC News',
+  'abc7.com': 'ABC7',
+  'cbsnews.com': 'CBS News',
+  'nytimes.com': 'The New York Times',
+  'washingtonpost.com': 'The Washington Post',
+  'theguardian.com': 'The Guardian',
+  'npr.org': 'NPR',
+  'apnews.com': 'AP News',
+  'reuters.com': 'Reuters',
+  'bbc.com': 'BBC',
+  'bbc.co.uk': 'BBC',
+  'politico.com': 'Politico',
+  'thehill.com': 'The Hill',
+  'axios.com': 'Axios',
+  'propublica.org': 'ProPublica',
+  'wired.com': 'Wired',
+  'techcrunch.com': 'TechCrunch',
+  'thedailybeast.com': 'The Daily Beast',
+  'vice.com': 'VICE',
+  'theintercept.com': 'The Intercept',
+  'motherjones.com': 'Mother Jones',
+  'slate.com': 'Slate',
+  'vox.com': 'Vox',
+  'buzzfeednews.com': 'BuzzFeed News',
+  'buzzfeed.com': 'BuzzFeed',
+  'statescoop.com': 'StateScoop',
+  'govtech.com': 'Government Technology',
+  'fedscoop.com': 'FedScoop',
+  'nextgov.com': 'Nextgov',
+  'brennancenter.org': 'Brennan Center',
+  'aclu.org': 'ACLU',
+  'nyclu.org': 'NYCLU',
+  'eff.org': 'EFF',
+  'aclum.org': 'ACLU of MA',
+  'vera.org': 'Vera Institute',
+  'sentencingproject.org': 'The Sentencing Project',
+  'hrw.org': 'Human Rights Watch',
+  'amnesty.org': 'Amnesty International',
+  'civilrights.org': 'The Leadership Conference',
+  'colorofchange.org': 'Color of Change',
+  'law.cornell.edu': 'Cornell Law',
+  'oyez.org': 'Oyez',
+  'scotusblog.com': 'SCOTUSblog',
+  'policingproject.org': 'The Policing Project',
+  'policinginstitute.org': 'Police Foundation',
+  'pewtrusts.org': 'Pew Trusts',
+  'urban.org': 'Urban Institute',
+  'brookings.edu': 'Brookings',
+  'rand.org': 'RAND',
+  'pewresearch.org': 'Pew Research',
+  'nij.ojp.gov': 'NIJ',
+  'ojp.gov': 'OJP',
+  'bja.gov': 'BJA',
+  'justice.gov': 'DOJ',
+  'fbi.gov': 'FBI',
+  'dhs.gov': 'DHS',
+  'nytimes.com': 'NY Times',
+  'nypost.com': 'NY Post',
+  'nydailynews.com': 'NY Daily News',
+  'gothamist.com': 'Gothamist',
+  'cityandstateny.com': 'City & State NY',
+  'thecity.nyc': 'THE CITY',
+  'news12.com': 'News 12',
+  'nbcchicago.com': 'NBC Chicago',
+  'chicagotribune.com': 'Chicago Tribune',
+  'suntimes.com': 'Chicago Sun-Times',
+  'latimes.com': 'LA Times',
+  'sfchronicle.com': 'SF Chronicle',
+  'dallasnews.com': 'Dallas Morning News',
+  'houstonchronicle.com': 'Houston Chronicle',
+  'miamiherald.com': 'Miami Herald',
+  'tampabay.com': 'Tampa Bay Times',
+  'orlandosentinel.com': 'Orlando Sentinel',
+  'ajc.com': 'Atlanta Journal-Constitution',
+  'bostonglobe.com': 'Boston Globe',
+  'baltimoresun.com': 'Baltimore Sun',
+  'philly.com': 'Philadelphia Inquirer',
+  'inquirer.com': 'Philadelphia Inquirer',
+  'seattletimes.com': 'Seattle Times',
+  'oregonlive.com': 'The Oregonian',
+  'denverpost.com': 'Denver Post',
+  'azcentral.com': 'Arizona Republic',
+  'startribune.com': 'Star Tribune',
+  'freep.com': 'Detroit Free Press',
+  'clevelandplaindealer.com': 'Cleveland Plain Dealer',
+  'dispatch.com': 'Columbus Dispatch',
+  'cincinnati.com': 'Cincinnati Enquirer',
+  'indystar.com': 'Indianapolis Star',
+  'courier-journal.com': 'Courier Journal',
+  'nola.com': 'The Times-Picayune',
+  'theadvocate.com': 'The Advocate',
+  'knoxnews.com': 'Knoxville News Sentinel',
+  'tennessean.com': 'The Tennessean',
+  'commercialappeal.com': 'The Commercial Appeal',
+  'spotlightpa.org': 'Spotlight PA',
+  'kqed.org': 'KQED',
+  'whyy.org': 'WHYY',
+  'wbez.org': 'WBEZ',
+  'wamu.org': 'WAMU',
+  'static1.squarespace.com': 'Report (PDF)',
+  'squarespace.com': 'Report (PDF)',
+  'docs.google.com': 'Google Doc',
+  'drive.google.com': 'Google Drive',
+  'github.com': 'GitHub',
+  'medium.com': 'Medium',
+  'substack.com': 'Substack',
+  'wordpress.com': 'WordPress',
+};
+
+function getLinkLabel(href) {
+  try {
+    const host = new URL(href).hostname.replace(/^www\./, '');
+    if (SITE_NAMES[host]) return SITE_NAMES[host];
+    // check subdomains against map (e.g. bronx.news12.com → news12.com)
+    const parts = host.split('.');
+    for (let i = 1; i < parts.length - 1; i++) {
+      const sub = parts.slice(i).join('.');
+      if (SITE_NAMES[sub]) return SITE_NAMES[sub];
+    }
+    // fallback: capitalize the second-to-last segment
+    const name = parts.length >= 2 ? parts[parts.length - 2] : parts[0];
+    return name.charAt(0).toUpperCase() + name.slice(1);
+  } catch {
+    return 'Source';
+  }
+}
+
 function getCategoryImage(categoryString) {
   if (!categoryString || categoryString.trim() === '') return null;
   const first = categoryString.split(',')[0].trim();
@@ -21,16 +154,16 @@ function getCategoryImage(categoryString) {
 
 // ── Domain image map ──────────────────────────────────────────────────────────
 const DOMAIN_IMAGES = {
-  'Law Enforcement': '/domain-icons/LawEnforcement_Icon2.svg',
-  'Courts':          '/domain-icons/Courts_Icon2.svg',
-  'Corrections':     '/domain-icons/Corrections_Icon2.svg',
+  'Law Enforcement': '/domain-icons/lawenforcement-icon.png',
+  'Courts':          '/domain-icons/courts-icon.png',
+  'Corrections':     '/domain-icons/corrections-icon.png',
 };
 
 function getUseIcon(orgUse) {
   if (!orgUse) return null;
   return orgUse.toLowerCase().includes('organizational')
-    ? '/domain-icons/organizational-use.svg'
-    : '/domain-icons/individual-use.svg';
+    ? '/domain-icons/organizationaluse-icon.png'
+    : '/domain-icons/individualuse-icon.png';
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
@@ -125,7 +258,14 @@ function EntryDetail() {
             <p className="ed-by">by</p>
 
             {entry.vendor && entry.vendor.trim() !== '' && entry.vendor !== 'N/A' ? (
-              <span className="ed-vendor-pill">{entry.vendor}</span>
+              entry.vendorLink && entry.vendorLink.trim() !== '' ? (
+                <a href={entry.vendorLink} target="_blank" rel="noopener noreferrer"
+                   className="ed-vendor-pill ed-vendor-link">
+                  {entry.vendor}
+                </a>
+              ) : (
+                <span className="ed-vendor-pill">{entry.vendor}</span>
+              )
             ) : (
               <span className="ed-vendor-pill ed-vendor-unknown">Unknown</span>
             )}
@@ -197,7 +337,7 @@ function EntryDetail() {
                     {sourceLinks.map((href, i) => (
                       <a key={i} href={href} target="_blank" rel="noopener noreferrer"
                          className="ed-source-pill">
-                        Link {i + 1}
+                        {getLinkLabel(href)}
                       </a>
                     ))}
                   </div>
