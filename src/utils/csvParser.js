@@ -35,7 +35,7 @@ export const parseCSVData = (csvText) => {
     ).trim();
 
     // Stage of Deployment → status
-    const status = (row['Stage of Deployment'] || '').trim();
+    const status = (row['Stage of Deployment  as of X date'] || '').trim();
 
     const orgUse = (row['Individual vs. Organizational Use'] || '').trim();
 
@@ -47,18 +47,15 @@ export const parseCSVData = (csvText) => {
       else if (row['Corrections'] === '1' || row['Corrections'] === 1) domain = 'Corrections';
     }
 
-    // Links
-    const link  = (row['Link']   || '').trim();
+    // Links (new CSV uses Link 1 – Link 4)
+    const link  = (row['Link 1'] || '').trim();
     const link2 = (row['Link 2'] || '').trim();
     const link3 = (row['Link 3'] || '').trim();
     const link4 = (row['Link 4'] || '').trim();
 
-    // Citations
-    const citation1 = (row['Citation 1'] || '').trim();
-    const citation2 = (row['Citation 2'] || '').trim();
-    const citation3 = (row['Citation 3'] || '').trim();
-    const citation4 = (row['Citation 4'] || '').trim();
-    const citations = [citation1, citation2, citation3, citation4].filter(Boolean);
+    // Citations (new CSV has a single Citations column)
+    const rawCitations = (row['Citations'] || '').trim();
+    const citations = rawCitations ? [rawCitations] : [];
 
     // Dates
     const lastSearched = (row['Last Searched Date'] || '').trim();

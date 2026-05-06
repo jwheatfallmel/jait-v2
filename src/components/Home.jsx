@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'; 
+import InteractiveMap from './InteractiveMap';
+
 function Home() {
   return (
     <div className="flex-1 bg-[#f5f5f0] px-4 sm:px-6 py-10">
@@ -16,44 +17,9 @@ function Home() {
           Classifying real-world deployments of AI in the criminal justice system.
         </h1>
 
-        {/* Stat Boxes */}
-<div className="flex flex-col sm:flex-row gap-8 w-full max-w-5xl mx-auto">
-  <Link to="/jai-t#table" className="flex-1 min-w-0 rounded-xl border-2 border-gray-700 bg-white px-5 py-4 text-center cursor-pointer hover:bg-gray-50 transition">
-    <div className="font-semibold text-gray-800">
-      City Count
-    </div>
-    <p className="text-sm text-gray-600 mt-1">
-      Total number of cities tracked in the JAI-T database
-    </p>
-    <div className="mt-2 text-3xl font-bold text-[#0a3d62]">
-      100
-    </div>
-  </Link>
-
-  <Link to="/jai-t#table" className="flex-1 min-w-0 rounded-xl border-2 border-gray-700 bg-white px-5 py-4 text-center cursor-pointer hover:bg-gray-50 transition">
-    <div className="font-semibold text-gray-800">
-      Application Count
-    </div>
-    <p className="text-sm text-gray-600 mt-1">
-      Total number of AI tools found in the criminal justice system
-    </p>
-    <div className="mt-2 text-3xl font-bold text-[#0a3d62]">
-      215
-    </div>
-  </Link>
-</div>
-
-        {/* Datawrapper Map */}
-        <div className="w-full max-w-5xl mx-auto overflow-hidden rounded-lg shadow-sm">
-          <div className="relative w-full aspect-[4/3]">
-            <iframe
-              src="https://datawrapper.dwcdn.net/YbVsD/9/"
-              title="JAI-T Data Visualization"
-              className="absolute inset-0 w-full h-full border-0"
-              scrolling="no"
-              allowFullScreen
-            />
-          </div>
+        {/* Interactive Map */}
+        <div className="w-full max-w-7xl mx-auto">
+          <InteractiveMap />
         </div>
 
         {/* Description */}
