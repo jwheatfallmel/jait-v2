@@ -79,14 +79,24 @@ function Header() {
             )}
           </div>
 
-          <Link 
-            to="/insights" 
+          <Link
+            to="/insights"
             onClick={closeAll}
             className={`font-['Source_Sans_3'] text-sm md:text-base lg:text-[1.2rem] font-bold text-white no-underline hover:underline whitespace-nowrap ${
               location.pathname === '/insights' ? 'underline' : ''
             }`}
           >
             Insights
+          </Link>
+
+          <Link
+            to="/news"
+            onClick={closeAll}
+            className={`font-['Source_Sans_3'] text-sm md:text-base lg:text-[1.2rem] font-bold text-white no-underline hover:underline whitespace-nowrap ${
+              location.pathname === '/news' ? 'underline' : ''
+            }`}
+          >
+            News
           </Link>
 
           {/* Contact Dropdown */}

@@ -97,11 +97,17 @@ function Footer() {
             >
               Insights
             </Link>
-            <Link 
-              to="/contact/about" 
+            <Link
+              to="/contact/about"
               className="font-['Source_Sans_3'] text-base text-white no-underline transition-opacity duration-200 hover:opacity-70 whitespace-nowrap"
             >
               Contact
+            </Link>
+            <Link
+              to="/terms-of-use"
+              className="font-['Source_Sans_3'] text-base text-white no-underline transition-opacity duration-200 hover:opacity-70 whitespace-nowrap"
+            >
+              Terms of Use
             </Link>
           </nav>
         </div>

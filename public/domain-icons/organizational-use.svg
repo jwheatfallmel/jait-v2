@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <!-- Connection lines from center to outer nodes -->
+  <line x1="40" y1="38" x2="40" y2="14" stroke="#2b6cb0" stroke-width="1.5"/>
+  <line x1="40" y1="38" x2="63" y2="26" stroke="#2b6cb0" stroke-width="1.5"/>
+  <line x1="40" y1="42" x2="63" y2="54" stroke="#2b6cb0" stroke-width="1.5"/>
+  <line x1="40" y1="42" x2="40" y2="66" stroke="#2b6cb0" stroke-width="1.5"/>
+  <line x1="40" y1="42" x2="17" y2="54" stroke="#2b6cb0" stroke-width="1.5"/>
+  <line x1="40" y1="38" x2="17" y2="26" stroke="#2b6cb0" stroke-width="1.5"/>
+
+  <!-- Outer nodes — small person icons -->
+  <!-- Top -->
+  <circle cx="40" cy="9"  r="4" fill="#2b6cb0"/>
+  <path d="M34 18 C34 14 36.8 12 40 12 C43.2 12 46 14 46 18" fill="#2b6cb0"/>
+  <!-- Top-right -->
+  <circle cx="65" cy="22" r="4" fill="#2b6cb0"/>
+  <path d="M59 31 C59 27 61.8 25 65 25 C68.2 25 71 27 71 31" fill="#2b6cb0"/>
+  <!-- Bottom-right -->
+  <circle cx="65" cy="57" r="4" fill="#2b6cb0"/>
+  <path d="M59 66 C59 62 61.8 60 65 60 C68.2 60 71 62 71 66" fill="#2b6cb0"/>
+  <!-- Bottom -->
+  <circle cx="40" cy="71" r="4" fill="#2b6cb0"/>
+  <path d="M34 80 C34 76 36.8 74 40 74 C43.2 74 46 76 46 80" fill="#2b6cb0"/>
+  <!-- Bottom-left -->
+  <circle cx="15" cy="57" r="4" fill="#2b6cb0"/>
+  <path d="M9 66 C9 62 11.8 60 15 60 C18.2 60 21 62 21 66" fill="#2b6cb0"/>
+  <!-- Top-left -->
+  <circle cx="15" cy="22" r="4" fill="#2b6cb0"/>
+  <path d="M9 31 C9 27 11.8 25 15 25 C18.2 25 21 27 21 31" fill="#2b6cb0"/>
+
+  <!-- Central person (larger) -->
+  <circle cx="40" cy="33" r="6" fill="#2b6cb0"/>
+  <path d="M28 50 C28 43 33.5 40 40 40 C46.5 40 52 43 52 50" fill="#2b6cb0"/>
+</svg>

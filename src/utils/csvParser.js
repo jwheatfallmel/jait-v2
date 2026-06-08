@@ -4,14 +4,7 @@ export const parseCSVData = (csvText) => {
   const results = Papa.parse(csvText, {
     header: true,
     skipEmptyLines: true,
-    transformHeader: (header, index) => {
-      const trimmed = header.trim();
-      // Handle empty headers by giving them a unique name
-      if (!trimmed) {
-        return `_empty_${index}`;
-      }
-      return trimmed;
-    },
+    transformHeader: (header) => header.trim(),
   });
 
   if (!results.data || results.data.length === 0) {
@@ -19,62 +12,83 @@ export const parseCSVData = (csvText) => {
     return [];
   }
 
-  // Suppress duplicate header warnings - empty columns are handled by transformHeader
-
   return results.data.map((row, index) => {
-    // Combine categories (Category 1, Category 2, Category 3)
     const categories = [
       row['Category 1'],
       row['Category 2'],
-      row['Category 3']
+      row['Category 3'],
     ].filter(Boolean).join(', ');
 
-    // Get technology name from "Type of Artificial Intelligence"
-    const technologyName = (row['Type of Artificial Intelligence'] || row['Type of Artificial Intelligence '] || '').trim();
+    // New CSV has "Name of Tool"; fall back to "Type of Artificial Intelligence"
+    const nameOfTool = (row['Name of Tool'] || '').trim();
+    const typeOfAI   = (row['Type of Artificial Intelligence'] || '').trim();
+    const name       = nameOfTool || typeOfAI;
 
-    // Get domain - prioritize the Domain column, but also check the sector columns
-    let domain = row['Domain'] || '';
-    if (!domain || domain.trim() === '') {
-      // Check if it's in Courts, Law Enforcement, or Corrections
-      if (row['Courts'] === '1' || row['Courts'] === 1 || row['Courts'] === '1.0') domain = 'Courts';
-      else if (row['Law Enforcement'] === '1' || row['Law Enforcement'] === 1 || row['Law Enforcement'] === '1.0') domain = 'Law Enforcement';
-      else if (row['Corrections'] === '1' || row['Corrections'] === 1 || row['Corrections'] === '1.0') domain = 'Corrections';
+    const vendor = (row['Vendor or Name of Tech (if applicable)'] || '').trim();
+    const vendorLink = (row['Vendor Link'] || '').trim();
+
+    // Actual description column from new CSV (header contains a newline)
+    const description = (
+      row['Description of Tool in your own words\n(1-2 sentences)'] ||
+      row['Description'] ||
+      ''
+    ).trim();
+
+    // Stage of Deployment → status
+    const status = (row['Stage of Deployment  as of X date'] || '').trim();
+
+    const orgUse = (row['Individual vs. Organizational Use'] || '').trim();
+
+    // Domain
+    let domain = (row['Domain'] || '').trim();
+    if (!domain) {
+      if (row['Courts'] === '1' || row['Courts'] === 1) domain = 'Courts';
+      else if (row['Law Enforcement'] === '1' || row['Law Enforcement'] === 1) domain = 'Law Enforcement';
+      else if (row['Corrections'] === '1' || row['Corrections'] === 1) domain = 'Corrections';
     }
 
-    // Create description from available data
-    const vendor = row['Vendor or Name of Tech (if applicable)'] || '';
-    const description = vendor 
-      ? `${technologyName}${vendor ? ` - ${vendor}` : ''}`
-      : technologyName;
+    // Links (new CSV uses Link 1 – Link 4)
+    const link  = (row['Link 1'] || '').trim();
+    const link2 = (row['Link 2'] || '').trim();
+    const link3 = (row['Link 3'] || '').trim();
+    const link4 = (row['Link 4'] || '').trim();
 
-    // Parse last updated date
-    let lastUpdated = row['Last Updated Per City'] || '';
-    if (lastUpdated) {
-      // Convert MM/DD/YYYY to YYYY-MM-DD format
-      const dateParts = lastUpdated.split('/');
-      if (dateParts.length === 3) {
-        const month = dateParts[0].padStart(2, '0');
-        const day = dateParts[1].padStart(2, '0');
-        const year = dateParts[2];
-        lastUpdated = `${year}-${month}-${day}`;
-      }
-    }
+    // Citations (new CSV has a single Citations column)
+    const rawCitations = (row['Citations'] || '').trim();
+    const citations = rawCitations ? [rawCitations] : [];
+
+    // Dates
+    const lastSearched = (row['Last Searched Date'] || '').trim();
+    const lastUpdated  = (row['Found Details OR Last Searched Date'] || row['Last Updated Per City'] || '').trim();
+
+    const criminalJustice = (row['Criminal Justice or Safety-related?'] || '').trim();
+    const uniqueCases     = (row['Unique Cases'] || '').trim();
+    const newOrOldRAs     = (row['New or Old RAs?'] || '').trim();
 
     return {
-      id: index + 1,
-      name: technologyName,
-      state: row['State'] || '',
-      city: row['City'] || '',
+      id: String(index),
+      name,
+      nameOfTool,
+      typeOfAI,
+      vendor,
+      vendorLink,
+      description,
+      status,
+      orgUse,
+      city:   (row['City']  || '').trim(),
+      state:  (row['State'] || '').trim(),
       domain: domain || 'N/A',
       category: categories || 'N/A',
-      description: description,
-      lastUpdated: lastUpdated,
-      link: row['Link'] || '',
+      link,
+      link2,
+      link3,
+      link4,
+      citations,
+      lastSearched,
+      lastUpdated,
+      criminalJustice,
+      uniqueCases,
+      newOrOldRAs,
     };
-  }).filter(row => {
-    // Only filter out rows that are completely empty or have no technology name
-    // Allow "N/A" as a valid value since some entries might legitimately have this
-    return row.name && row.name.trim() !== '';
-  });
+  }).filter(row => row.name && row.name.trim() !== '' && row.name !== 'N/A');
 };
-
