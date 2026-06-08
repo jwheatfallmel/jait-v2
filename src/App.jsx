@@ -12,6 +12,8 @@ import Contact from './pages/Contact';
 import './App.css';
 import Taxonomy from './pages/Taxonomy';
 import EntryDetail from './components/EntryDetail';
+import News from './pages/News';
+import TermsOfUse from './pages/TermsOfUse';
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
         <Route path="/contact/about" element={<Contact />} />
         <Route path="/jai-t/:id" element={<EntryDetail />} />
         <Route path="/contact/faq" element={<Contact />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
       </Routes>
       <Footer />
     </div>
